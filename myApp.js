@@ -5,10 +5,7 @@ mongoose.connect(process.env['MONGO_URI'], { useNewUrlParser: true, useUnifiedTo
 
 
 const personSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
+  name: String,
   age: Number,
   favoriteFoods: [String],
 });
@@ -16,9 +13,9 @@ const personSchema = new mongoose.Schema({
 let Person = mongoose.model('Person', personSchema);
 
 const createAndSavePerson = (done) => {
-  const lucyFer = Person.create({ name: 'Lucy Fer', age: 666, favoriteFoods: ['pizza', 'pineapple', 'hummus'] });
+  let janeFonda = new Person({name: "Jane Fonda", age: 84, favoriteFoods: ["eggs", "fish", "fresh fruit"]});
 
-  lucyFer.save(function(err, data) {
+  janeFonda.save(function(err, data) {
     if (err) return console.error(err);
     done(null, data)
   });
